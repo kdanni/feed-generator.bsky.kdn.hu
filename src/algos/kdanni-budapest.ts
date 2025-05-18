@@ -14,12 +14,12 @@ export const FEEDGEN_CONFIG = {
     {
       uri: `at://${process.env.FEEDGEN_PUBLISHER_DID}/app.bsky.feed.generator/${shortname}`,
       id: `${shortname}`,
-      displayName: '@kdanni.hu - #Budapest || #Danube',
+      displayName: '@kdanni.hu - #Budapest',
       description: 'My posts with #Budapest or #Danube hashtags',
     },
   ],
 }
-
+// avatars/budapest.jpg
 
 export const handler = async (
     ctx: AppContext,

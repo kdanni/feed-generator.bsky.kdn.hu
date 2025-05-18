@@ -14,12 +14,13 @@ export const FEEDGEN_CONFIG = {
     {
       uri: `at://${process.env.FEEDGEN_PUBLISHER_DID}/app.bsky.feed.generator/${shortname}`,
       id: `${shortname}`,
-      displayName: '@kdanni.hu - #phototgraphy',
-      description: 'My posts with #phototgraphy hashtags',
+      displayName: '@kdanni.hu - #Photo',
+      description: 'My posts with #phototgraphy hashtags, no #photo but #photography was to long for displayname.',
+      avatarFile: 'avatars/camera.jpg',
     },
   ],
 }
-// avatars/camera.jpg
+
 
 export const handler = async (
     ctx: AppContext,

@@ -16,10 +16,11 @@ export const FEEDGEN_CONFIG = {
       id: `${shortname}`,
       displayName: '@kdanni.hu - #Budapest',
       description: 'My posts with #Budapest or #Danube hashtags',
+      avatarFile: 'avatars/budapest.jpg',
     },
   ],
 }
-// avatars/budapest.jpg
+
 
 export const handler = async (
     ctx: AppContext,

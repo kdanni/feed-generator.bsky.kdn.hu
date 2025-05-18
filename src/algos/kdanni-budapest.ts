@@ -1,10 +1,25 @@
+import dotenv from 'dotenv';
 import { QueryParams } from '../lexicon/types/app/bsky/feed/getFeedSkeleton'
 import { AppContext } from '../config'
 import { FeedGenerationResult } from '../types'
 
+dotenv.config();
 
 // Short name (identifier) for your feed (max 15 chars, used in the record URI)
 export const shortname = 'kdanni.hu-Bud';
+
+export const FEEDGEN_CONFIG = {
+  publisherDid: `${process.env.FEEDGEN_PUBLISHER_DID}`,
+  feeds: [
+    {
+      uri: `at://${process.env.FEEDGEN_PUBLISHER_DID}/app.bsky.feed.generator/${shortname}`,
+      id: `${shortname}`,
+      displayName: '@kdanni.hu - #Budapest || #Danube',
+      description: 'My posts with #Budapest or #Danube hashtags',
+    },
+  ],
+}
+
 
 export const handler = async (
     ctx: AppContext,

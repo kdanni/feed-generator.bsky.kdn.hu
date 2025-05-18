@@ -6,7 +6,7 @@ const run = async () => {
   dotenv.config()
 
   let sqliteDir = process.env.FEEDGEN_SQLITE_LOCATION
-  if (sqliteDir && sqliteDir !== ':memory:') {
+  if (sqliteDir && sqliteDir !== ':memory:' && sqliteDir !== ':off:') {
     // Remove the DB file of the end of sqliteDir varible only the directory is left
     sqliteDir = sqliteDir.replace(/\/[^/]+$/, '')
     // Check if the directory exists

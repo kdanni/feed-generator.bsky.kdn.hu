@@ -83,7 +83,8 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
       await this.db
         .insertInto('post')
         .values(postsToCreate)
-        .onConflict((oc) => oc.doNothing())
+        // .onConflict((oc) => oc.doNothing())
+        .ignore()
         .execute()
     }
   }

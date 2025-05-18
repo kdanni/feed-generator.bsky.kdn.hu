@@ -1,8 +1,33 @@
 import dotenv from 'dotenv'
+import fs from 'fs'
 import FeedGenerator from './server'
 
 const run = async () => {
   dotenv.config()
+
+  let sqliteDir = process.env.FEEDGEN_SQLITE_LOCATION
+  if (sqliteDir && sqliteDir !== ':memory:') {
+    // Remove the DB file of the end of sqliteDir varible only the directory is left
+    sqliteDir = sqliteDir.replace(/\/[^/]+$/, '')
+    // Check if the directory exists
+    if (!sqliteDir) {
+      console.error(
+        'FEEDGEN_SQLITE_LOCATION is not a valid directory. Please check your environment variables.',
+      )
+      process.exit(1)
+    }
+    // Create the directory if it doesn't exist
+    try {
+      await fs.promises.mkdir(sqliteDir, { recursive: true })
+    }
+    catch (err) {
+      console.error(
+        `FEEDGEN_SQLITE_LOCATION is not writable. Please check your environment variables. ${err}`,
+      )
+      process.exit(1)
+    }
+  }
+
   const hostname = maybeStr(process.env.FEEDGEN_HOSTNAME) ?? 'example.com'
   const serviceDid =
     maybeStr(process.env.FEEDGEN_SERVICE_DID) ?? `did:web:${hostname}`

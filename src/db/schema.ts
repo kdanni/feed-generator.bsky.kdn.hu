@@ -6,7 +6,13 @@ export type DatabaseSchema = {
 export type Post = {
   uri: string
   cid: string
+  author: string
+  text: string;
+  replyParent: string | null;
+  replyRoot: string | null;
   indexedAt: string
+  filterReason: string | null;
+  hasImage: string | null;
 }
 
 export type SubState = {

@@ -27,3 +27,54 @@ migrations['001'] = {
     await db.schema.dropTable('sub_state').execute()
   },
 }
+
+migrations['002'] = {
+  async up(db: Kysely<unknown>) {
+    await db.schema
+      .alterTable('post')
+      .addColumn('text', 'varchar', (col) => col.notNull())
+      .execute()
+    await db.schema
+      .alterTable('post')
+      .addColumn('replyParent', 'varchar')
+      .execute()    
+    await db.schema
+      .alterTable('post')
+      .addColumn('replyRoot', 'varchar')
+      .execute()
+  },
+  async down(db: Kysely<unknown>) {
+    await db.schema.alterTable('post').dropColumn('text').execute()
+    await db.schema.alterTable('post').dropColumn('replyParent').execute()
+    await db.schema.alterTable('post').dropColumn('replyRoot').execute()
+  },
+}
+
+migrations['003'] = {
+  async up(db: Kysely<unknown>) {
+    await db.schema
+      .alterTable('post')
+      .addColumn('author', 'varchar')
+      .execute()
+    await db.schema
+      .alterTable('post')
+      .addColumn('filterReason', 'varchar')
+      .execute()
+  },
+  async down(db: Kysely<unknown>) {
+    await db.schema.alterTable('post').dropColumn('author').execute()
+    await db.schema.alterTable('post').dropColumn('filterReason').execute()
+  },
+}
+
+migrations['004'] = {
+  async up(db: Kysely<unknown>) {
+    await db.schema
+      .alterTable('post')
+      .addColumn('hasImage', 'varchar')
+      .execute()
+  },
+  async down(db: Kysely<unknown>) {
+    await db.schema.alterTable('post').dropColumn('hasImage').execute()
+  },
+}
